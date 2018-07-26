@@ -1,0 +1,47 @@
+<%= render 'shared/nav' %>
+
+<style>
+  .mdl-layout {
+    align-items: center;
+    justify-content: center;
+  }
+  .glyph{
+    padding-right: 1vw;
+  }
+  .fixedButton{
+    position: fixed;
+    bottom: 5vh;
+    right: 4vw;
+  }
+
+</style>
+
+<div class="mdl-layout mdl-js-layout">
+
+ <main class="mdl-layout__content">
+    <div class="page-content">
+      <% if @quotes.count.zero? %>
+          <h3>No quotes added yet!</h3>
+      <% end %>
+      <ul class="demo-list-item mdl-list" >
+        <% @quotes.each do |quote| %>
+            <li class="mdl-list__item">
+              <span class="mdl-list__item-primary-content" style="text-align: center;">
+                <svg class='glyph' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 18 18">
+                  <path d="M10 5v5h2.75L11 13h2.25L15 10V5h-5zm-7 5h2.75L4 13h2.25L8 10V5H3v5z"/></svg>
+                <i><%= quote.text %></i>
+              </span>
+            </li>
+        <% end %>
+      </ul>
+      <div class="fixedButton">
+        <form>
+          <button formaction="/quotes/new" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+            <i class="material-icons">add</i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+</div>
