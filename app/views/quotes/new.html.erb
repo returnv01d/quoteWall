@@ -1,0 +1,42 @@
+<%= render 'shared/nav' %>
+
+<style>
+  .mdl-textfield{
+    display: inline-flex;
+  }
+  .mdl-button{
+    padding: 10vm;
+  }
+</style>
+
+
+<center>
+  <h4><i>Add Quote</i></h4>
+
+    <%= form_with scope: :quote, url: quotes_path do |form| %>
+      <% if @quote.errors.any? %>
+          <div id="error_explanation">
+            <h3>
+              <%= pluralize(@quote.errors.count, "error") %> prohibited
+              this quote from being saved:
+            </h3>
+            <ul>
+              <% @quote.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+        <%= form.text_area :text, class: 'mdl-textfield__input' %>
+        <label class="mdl-textfield__label">Quote lines... (without ")</label>
+      </div>
+
+      <button type='submit' class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored mdl-js-ripple-effect">
+        <i class="material-icons">create</i>
+      </button>
+
+
+    <% end %>
+</center>
